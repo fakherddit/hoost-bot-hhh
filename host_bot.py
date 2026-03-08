@@ -4,7 +4,7 @@
 import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from aiogram.utils import executor
+ # لم يعد هناك executor في aiogram v3
 import sqlite3
 
 API_TOKEN = '8718005981:AAEyYFOywodN1892xFjVKmZWxpchsuN7wmI'
@@ -40,5 +40,9 @@ async def token_handler(message: types.Message):
     conn.commit()
     await message.reply('تم حفظ التوكن! يمكنك الآن إدارة البوت من لوحة التحكم.')
 
+async def main():
+    await dp.start_polling(bot)
+
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    import asyncio
+    asyncio.run(main())
